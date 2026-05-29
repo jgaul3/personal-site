@@ -1,3 +1,18 @@
+:root {
+  --color-bg: #0d1117;
+  --color-surface: #161b22;
+  --color-border: #21262d;
+  --color-border-hover: #30363d;
+  --color-text: #c9d1d9;
+  --color-text-bright: #f0f6fc;
+  --color-text-muted: #9da5ad;
+  --color-accent: #58a6ff;
+
+  --text-xl: 2rem;
+  --text-base: 1rem;
+  --text-sm: 0.8rem;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,8 +21,8 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  background: #0d1117;
-  color: #c9d1d9;
+  background: var(--color-bg);
+  color: var(--color-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   position: relative;
@@ -56,16 +71,16 @@ header {
 }
 
 h1 {
-  font-size: 2rem;
-  color: #f0f6fc;
+  font-size: var(--text-xl);
+  color: var(--color-text-bright);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
 .tagline {
-  margin-top: 0.5rem;
-  font-size: 1.05rem;
-  color: #c9d1d9;
+  margin-top: 0.75rem;
+  font-size: var(--text-base);
+  color: var(--color-text);
 }
 
 .header-top {
@@ -78,8 +93,8 @@ h1 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
-  color: #9da5ad;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
   cursor: pointer;
   white-space: nowrap;
 }
@@ -92,15 +107,15 @@ h1 {
 }
 
 nav {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   display: flex;
   gap: 1.5rem;
 }
 
 nav a {
-  color: #58a6ff;
+  color: var(--color-accent);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: var(--text-base);
   font-weight: 500;
 }
 
@@ -109,15 +124,15 @@ nav a:hover {
 }
 
 h2 {
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #9da5ad;
+  color: var(--color-text-muted);
   margin-bottom: 1rem;
   margin-top: 2.5rem;
-  background: #161b22;
-  border: 1px solid #21262d;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -137,11 +152,11 @@ h2 input[type="checkbox"] {
 }
 
 .card {
-  border: 1px solid #21262d;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1.25rem;
   margin-bottom: 0.75rem;
-  background: #161b22;
+  background: var(--color-surface);
   transition: border-color 0.15s;
   display: flex;
   gap: 1rem;
@@ -150,6 +165,7 @@ h2 input[type="checkbox"] {
 
 .card.expandable {
   display: block;
+  position: relative;
 }
 
 .card-header {
@@ -157,6 +173,22 @@ h2 input[type="checkbox"] {
   align-items: center;
   gap: 0.6rem;
   cursor: pointer;
+  position: relative;
+}
+
+.card-header:not(:has(:checked))::before {
+  content: '?';
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  pointer-events: none;
 }
 
 .card-header input[type="checkbox"] {
@@ -165,6 +197,15 @@ h2 input[type="checkbox"] {
   height: 18px;
   flex-shrink: 0;
   cursor: pointer;
+}
+
+.card-header input[type="checkbox"]:not(:checked) {
+  opacity: 0.5;
+  transition: opacity 0.15s;
+}
+
+.card-header:hover input[type="checkbox"]:not(:checked) {
+  opacity: 0.8;
 }
 
 .card-expand {
@@ -180,11 +221,15 @@ h2 input[type="checkbox"] {
   align-items: start;
 }
 
+.card-header:has(:checked) + .card-expand .card-expand-inner {
+  align-items: center;
+}
+
 .card-header:has(:checked) + .card-expand {
   grid-template-rows: 1fr;
 }
 
-.card-header:has(:checked) + .card-expand > .card-expand-inner {
+.card-expand-inner {
   padding-top: 0.75rem;
 }
 
@@ -202,7 +247,7 @@ h2 input[type="checkbox"] {
 }
 
 .card:hover {
-  border-color: #30363d;
+  border-color: var(--color-border-hover);
 }
 
 .header-card {
@@ -210,8 +255,8 @@ h2 input[type="checkbox"] {
 }
 
 .card h3 {
-  font-size: 1rem;
-  color: #f0f6fc;
+  font-size: var(--text-base);
+  color: var(--color-text-bright);
   font-weight: 600;
   display: flex;
   justify-content: space-between;
@@ -222,20 +267,20 @@ h2 input[type="checkbox"] {
 
 .meta {
   font-weight: 400;
-  color: #c9d1d9;
-  font-size: 0.85rem;
+  color: var(--color-text);
+  font-size: var(--text-sm);
   text-align: right;
   white-space: nowrap;
 }
 
 .card p {
   margin-top: 0.4rem;
-  font-size: 0.92rem;
-  color: #c9d1d9;
+  font-size: var(--text-base);
+  color: var(--color-text);
 }
 
 .card a {
-  color: #58a6ff;
+  color: var(--color-accent);
   text-decoration: none;
 }
 
@@ -246,6 +291,44 @@ h2 input[type="checkbox"] {
 .link {
   display: inline-block;
   margin-top: 0.5rem;
-  font-size: 0.88rem;
+  margin-right: 1rem;
+  font-size: var(--text-base);
   font-weight: 500;
+}
+
+.link:last-child {
+  margin-right: 0;
+}
+
+.contact-email {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+#checkboxes input:focus-visible {
+  border-radius: 4px;
+}
+
+@media (max-width: 480px) {
+  .card-expand > .card-expand-inner {
+    flex-direction: column;
+  }
+
+  .card .thumb {
+    width: 100%;
+  }
+
+  .card h3 {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .meta {
+    text-align: left;
+  }
 }
