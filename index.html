@@ -28,7 +28,7 @@
       <nav>
         <a href="https://github.com/jgaul3">GitHub</a>
         <a href="https://medium.com/@jon.gaul">Blog</a>
-        <a href="https://www.linkedin.com/in/jon-gaul-84a195150/">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/jgaul3/">LinkedIn</a>
       </nav>
     </header>
 
@@ -211,8 +211,12 @@
       animated = motionToggle.checked;
     });
 
-    const visCols = Math.ceil(window.innerWidth / size);
-    const visRows = Math.ceil(window.innerHeight / size);
+    let visCols = Math.ceil(window.innerWidth / size);
+    let visRows = Math.ceil(window.innerHeight / size);
+    window.addEventListener('resize', () => {
+      visCols = Math.ceil(window.innerWidth / size);
+      visRows = Math.ceil(window.innerHeight / size);
+    });
     (function tick() {
       if (animated) {
         const r = Math.floor(Math.random() * visRows);
