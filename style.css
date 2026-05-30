@@ -210,8 +210,25 @@ h2 input[type="checkbox"] {
 
 .card-expand {
   display: grid;
-  grid-template-rows: 0fr;
+  grid-template-rows: minmax(1.5rem, 0fr);
   transition: grid-template-rows 0.25s ease;
+  position: relative;
+}
+
+.card-expand::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background: linear-gradient(to bottom, transparent, var(--color-surface));
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.card-header:has(:checked) + .card-expand::after {
+  opacity: 0;
 }
 
 .card-expand > .card-expand-inner {
@@ -221,12 +238,8 @@ h2 input[type="checkbox"] {
   align-items: start;
 }
 
-.card-header:has(:checked) + .card-expand .card-expand-inner {
-  align-items: center;
-}
-
 .card-header:has(:checked) + .card-expand {
-  grid-template-rows: 1fr;
+  grid-template-rows: minmax(1.5rem, 1fr);
 }
 
 .card-expand-inner {
@@ -244,6 +257,11 @@ h2 input[type="checkbox"] {
 .card .card-body {
   flex: 1;
   min-width: 0;
+}
+
+.card-expand-inner > :first-child,
+.card .card-body > :first-child {
+  margin-top: 0;
 }
 
 .card:hover {

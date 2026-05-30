@@ -267,7 +267,8 @@
     document.getElementById('contact-reveal').addEventListener('change', function() {
       const span = document.querySelector('.contact-text');
       if (this.checked) {
-        const u = 'jgaul3', d = 'gmail.com';
+        const d = 'gmail.com';
+        const u = 'jgaul3';
         const addr = u + '@' + d;
         span.innerHTML = 'Email me at <a href="mailto:' + addr + '" class="contact-email">' + addr + '</a>';
       } else {
