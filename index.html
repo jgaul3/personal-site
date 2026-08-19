@@ -229,7 +229,7 @@
 
     const radius = 2;
 
-    function toggleNear(x, y) {
+    function activateNear(x, y) {
       const col = Math.floor(x / size);
       const row = Math.floor(y / size);
       for (let dr = -radius; dr <= radius; dr++) {
@@ -240,7 +240,7 @@
           if (r < 0 || c < 0 || c >= cols) continue;
           const idx = r * cols + c;
           if (idx >= 0 && idx < boxes.length) {
-            boxes[idx].checked = !boxes[idx].checked;
+            boxes[idx].checked = true;
           }
         }
       }
@@ -254,7 +254,7 @@
       if (col === lastCol && row === lastRow) return;
       lastCol = col;
       lastRow = row;
-      toggleNear(x, y);
+      activateNear(x, y);
     }
     document.addEventListener('mousemove', (e) => {
       handleMove(e.clientX, e.clientY);
